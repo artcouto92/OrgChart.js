@@ -189,7 +189,11 @@ export default class OrgChart {
           return;
         }
         if (this.status === 200) {
-          resolve(JSON.parse(this.response));
+          try {
+            resolve(JSON.parse(this.response));  
+          } catch (error) {
+            resolve(this.response);
+          }
         } else {
           reject(new Error(this.statusText));
         }
